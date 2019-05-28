@@ -1,0 +1,62 @@
+# This dice rolling simulator allows you to roll as many n-sided dice you want where each side is equally likely.
+import random
+
+
+def dicesetup():
+    y = input('How many sides does your dice have?')
+
+    while type(y) != int:
+        try:
+            y = int(y)
+            while int(y) < 2:
+                print("Your dice doesn't have enough sides.")
+                return dicesetup()
+        except ValueError:
+            y = input("Give me...  another number.")
+    return y
+
+
+def howmany():
+    y = input('How many dice do you want to roll?')
+
+    while type(y) != int:
+        try:
+            y = int(y)
+            while int(y) < 1:
+                print("We're rolling at least one.")
+                return howmany()
+        except ValueError:
+            y = input("Give me...  another number.")
+    return y
+
+
+def times():
+    y = input('How many times are we rolling these things?')
+
+    while type(y) != int:
+        try:
+            y = int(y)
+            while int(y) < 1:
+                print("We're doing this at least once.")
+                return times()
+        except ValueError:
+            y = input("Give me...  another number.")
+    return y
+
+
+print("Now it's time to roll some dice.")
+dice = dicesetup()
+these = howmany()
+rollin = times()
+print("There.  We have a {}-sided die.".format(dice))
+print("We're rolling {} of them.".format(these))
+print("And we're doing it all {} times.".format(rollin))
+
+for i in range(0, rollin):
+    mylist = []
+    for j in range(0, these):
+        x = random.randint(1, dice)
+        mylist.append(x)
+    print(mylist)
+
+exit()
