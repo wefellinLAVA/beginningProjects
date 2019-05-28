@@ -1,0 +1,32 @@
+import random
+
+number = random.randint(1, 1000)
+
+
+def program():
+    guess = input("Guess the number we chose.")
+    guesses = 1
+
+    while guess != number:
+        if type(guess) != int:
+            try:
+                guess = int(guess)
+            except ValueError:
+                guess = input("Guess the INTEGER we chose.")
+                guesses += 1
+        else:
+            if guess < number:
+                print("Higher...")
+            if guess > number:
+                print("Lower...")
+            guess = input("Guess again.")
+            guesses += 1
+    return guesses
+
+
+playing = program()
+
+if playing == 1:
+    print("You guessed it in 1 guess.")
+else:
+    print("You guessed it in {} guesses.".format(playing))
